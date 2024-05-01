@@ -3,5 +3,4 @@ from django.shortcuts import render
 
 # Create your views here.
 def index(request):
-    pass
-    return HttpResponse("Hello World")
+    return render(request,'matrix-admin/index2.html')

@@ -30,11 +30,17 @@ def index(request):
         user=authenticate(username=username,password=password)
         authenticated=True
         if user is not None:
-            login(request, user)
-            return redirect('/')
+            if user.is_superuser:
+                login(request, user)
+                return redirect('/')
+            else:
+                login(request, user)
+                return redirect('userDashboard')
+
+
         else:
             messages.error(request, 'Invalid Credentials')
-            return redirect('login')
+            return redirect('index')
     return render(request,'matrix-admin/authentication-login.html')
 
 

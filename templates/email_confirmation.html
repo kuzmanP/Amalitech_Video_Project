@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Rift Video App</title>
+</head>
+<body>
+    <h2>Welcome to Rift Video App, {{ user.username }}!</h2>
+    <p>Thank you for signing up. To activate your account, please click the link below:</p>
+    <p><a href="{{ domain }}/activate/{{ uid }}/{{ token }}">Activate Account</a></p>
+    <p>If you didn't sign up for an account on Rift Video App, you can ignore this email.</p>
+    <p>Thank you,<br>The Rift Team</p>
+</body>
+</html>

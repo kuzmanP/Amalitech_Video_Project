@@ -27,6 +27,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'ce-gghartey3620@st.umat.edu.gh'  # Replace with your Gmail address
+EMAIL_HOST_PASSWORD = '9011683620'     # Replace with your Gmail app password
+
+
+
 
 # Application definition
 
@@ -37,7 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'VideoApp.apps'
+    'VideoApp.apps',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +82,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Amalitech_Project.wsgi.application'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases

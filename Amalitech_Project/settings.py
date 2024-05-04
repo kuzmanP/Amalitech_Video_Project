@@ -37,6 +37,14 @@ EMAIL_HOST_PASSWORD = '9011683620'     # Replace with your Gmail app password
 
 
 
+AUTHENTICATION_BACKENDS = [
+    'account.auth_backend.EmailAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+
+
+
 
 # Application definition
 
@@ -49,6 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'VideoApp.apps',
     'crispy_forms',
+    'account',
 ]
 
 MIDDLEWARE = [

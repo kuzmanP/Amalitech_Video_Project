@@ -23,25 +23,21 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
 # Create your views here.
 def index(request):
-    authenticated = False
-    if request.method=="POST":
-        username=request.POST['username']
-        password=request.POST['password']
-        user=authenticate(username=username,password=password)
-        authenticated=True
+    if request.method == "POST":
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(email=email, password=password)
         if user is not None:
+            login(request, user)
             if user.is_superuser:
-                login(request, user)
                 return redirect('/')
             else:
-                login(request, user)
                 return redirect('userDashboard')
-
-
         else:
             messages.error(request, 'Invalid Credentials')
             return redirect('index')
-    return render(request,'matrix-admin/authentication-login.html')
+
+    return render(request, 'matrix-admin/authentication-login.html')
 
 
 
@@ -60,7 +56,7 @@ def register(request):
                 return redirect('register')
             else:
                 user = User.objects.create_user(username=username, email=email, password=password)
-                user.is_active = False
+                user.is_active = True
                 user.save()
 
                 # Email welcome

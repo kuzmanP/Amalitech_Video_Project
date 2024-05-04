@@ -32,7 +32,7 @@ def index(request):
             if user.is_superuser:
                 return redirect('/')
             else:
-                return redirect('userDashboard')
+                return redirect('/userDashboard')
         else:
             messages.error(request, 'Invalid Credentials')
             return redirect('index')

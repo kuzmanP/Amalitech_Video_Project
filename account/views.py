@@ -1,5 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
-from .models import User
+#from .models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 from django.contrib import messages
@@ -110,3 +112,6 @@ def forgetPassword(request):
                     return redirect("/")
     password_reset_form = PasswordResetForm()
     return render(request,'password/password_reset.html',{"password_reset_form":password_reset_form})
+
+def password_reset_confirm(request, uidb64, token):
+    return render(request, 'password/password_reset_confirm.html')

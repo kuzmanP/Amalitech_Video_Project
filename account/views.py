@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .models import User
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
@@ -13,7 +13,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 
 from django.core.mail import EmailMessage
-from django.core.mail import send_mail                   #for mail services
+from django.core.mail import send_mail
 
 from Amalitech_Project import settings
 from account.tokens import generate_token
@@ -76,6 +76,9 @@ def register(request):
                 return redirect('index')
     return render(request, 'matrix-admin/authentication-register.html')
 
+def logOut(request):
+    logout(request)
+    return redirect('index')
 
 def forgetPassword(request):
     if request.method == "POST":
@@ -86,7 +89,7 @@ def forgetPassword(request):
             if associated_users.exists():
                 for user in associated_users:
                     subject = "Password Reset Requested"
-                    email_template_name = "accounts/password/password_reset.txt"
+                    email_template_name = "password/password_reset.txt"
                     c = {
                         "email": user.email,
                         'domain': '127.0.0.1:8000',

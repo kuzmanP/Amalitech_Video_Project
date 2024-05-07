@@ -196,88 +196,7 @@
               <!-- ============================================================== -->
               <!-- Messages -->
               <!-- ============================================================== -->
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle waves-effect waves-dark"
-                  href=""
-                  id="2"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <i class="font-24 mdi mdi-comment-processing"></i>
-                </a>
-                <div
-                  class="dropdown-menu dropdown-menu-right mailbox animated bounceInDown"
-                  aria-labelledby="2"
-                >
-                  <ul class="list-style-none">
-                    <li>
-                      <div class="">
-                        <!-- Message -->
-                        <a href="javascript:void(0)" class="link border-top">
-                          <div class="d-flex no-block align-items-center p-10">
-                            <span class="btn btn-success btn-circle"
-                              ><i class="ti-calendar"></i
-                            ></span>
-                            <div class="m-l-10">
-                              <h5 class="m-b-0">Event today</h5>
-                              <span class="mail-desc"
-                                >Just a reminder that event</span
-                              >
-                            </div>
-                          </div>
-                        </a>
-                        <!-- Message -->
-                        <a href="javascript:void(0)" class="link border-top">
-                          <div class="d-flex no-block align-items-center p-10">
-                            <span class="btn btn-info btn-circle"
-                              ><i class="ti-settings"></i
-                            ></span>
-                            <div class="m-l-10">
-                              <h5 class="m-b-0">Settings</h5>
-                              <span class="mail-desc"
-                                >You can customize this template</span
-                              >
-                            </div>
-                          </div>
-                        </a>
-                        <!-- Message -->
-                        <a href="javascript:void(0)" class="link border-top">
-                          <div class="d-flex no-block align-items-center p-10">
-                            <span class="btn btn-primary btn-circle"
-                              ><i class="ti-user"></i
-                            ></span>
-                            <div class="m-l-10">
-                              <h5 class="m-b-0">Pavan kumar</h5>
-                              <span class="mail-desc"
-                                >Just see the my admin!</span
-                              >
-                            </div>
-                          </div>
-                        </a>
-                        <!-- Message -->
-                        <a href="javascript:void(0)" class="link border-top">
-                          <div class="d-flex no-block align-items-center p-10">
-                            <span class="btn btn-danger btn-circle"
-                              ><i class="fa fa-link"></i
-                            ></span>
-                            <div class="m-l-10">
-                              <h5 class="m-b-0">Luanch Admin</h5>
-                              <span class="mail-desc"
-                                >Just see the my new admin!</span
-                              >
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <!-- ============================================================== -->
-              <!-- End Messages -->
-              <!-- ============================================================== -->
+
 
               <!-- ============================================================== -->
               <!-- User profile and search -->
@@ -289,33 +208,29 @@
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
-                  ><img
+                  >
+                  <img
                     src="{% static 'images/users/1.jpg' %}"
                     alt="user"
                     class="rounded-circle"
                     width="31"
-                /></a>
+                  />
+                   {% if user.is_authenticated %}
+                         <span>Hi, {{ user.username }}!</span>
+                        {% else %}
+                        <span>You are not logged in.</span>
+                        {% endif %}
+                </a>
                 <div class="dropdown-menu dropdown-menu-right user-dd animated">
                   <a class="dropdown-item" href="javascript:void(0)"
-                    ><i class="ti-user m-r-5 m-l-5"></i> My Profile</a
-                  >
-                  <a class="dropdown-item" href="javascript:void(0)"
-                    ><i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a
-                  >
-                  <a class="dropdown-item" href="javascript:void(0)"
-                    ><i class="ti-email m-r-5 m-l-5"></i> Inbox</a
-                  >
+                    ><i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
+                
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="javascript:void(0)"
-                    ><i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a
-                  >
-                  <div class="dropdown-divider"></div>
-                  {% if user.is_authenticated %}
-                  &nbsp; &nbsp; 
-                 
-                 <button class="btn btn-danger"><a href="Logout">Logout</a></button>
+                    {% if user.is_authenticated %}
+                <a class="dropdown-item" href="{% url 'logout' %}">
+                    <i class="ti-user m-r-5 m-l-5"></i> Logout</a>
                   {% else %}
-                 <button class="btn btn-secondary" ><a href="Logout">Login</a></button>
+                 <button class="btn btn-secondary" ><a href="{% url 'index' %}">Login</a></button>
                  {% endif %}
                   <div class="dropdown-divider"></div>
                   <div class="p-l-30 p-10">
@@ -349,84 +264,29 @@
               <li class="sidebar-item">
                 <a
                   class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="http://127.0.0.1:8000/"
+                  href="{% url 'user_dashboard'  %}"
                   aria-expanded="false"
-                  ><i class="mdi mdi-view-dashboard"></i
-                  ><span class="hide-menu">Dashboard</span></a
-                >
-                
-              </li>
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href=""
-                  aria-expanded="false"
-                  ><i class="mdi mdi-chart-bar"></i
-                  ><span class="hide-menu">Charts</span></a
-                >
-              </li>
-             
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link has-arrow waves-effect waves-dark"
-                  href="javascript:void(0)"
-                  aria-expanded="false"
-                  ><i class="mdi mdi-receipt"></i
-                  ><span class="hide-menu">Finances </span></a
-                >
-                <ul aria-expanded="false" class="collapse first-level">
-                  <li class="sidebar-item">
-                    <a href="http://127.0.0.1:8000/Fees/?" class="sidebar-link"
-                      ><i class="mdi mdi-note-outline"></i
-                      ><span class="hide-menu">
-                        Pay Fees </span></a>
-                    
-                  </li>
-                  <li class="sidebar-item">
-                    <a href="http://127.0.0.1:8000/FeesDetails/?" class="sidebar-link"
-                      ><i class="mdi mdi-note-outline"></i
-                      ><span class="hide-menu"> Finances Details </span></a>
-                  </li>
-                  
-             
-                </ul>
-              </li>
-            
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link has-arrow waves-effect waves-dark"
-                  href="javascript:void(0)"
-                  aria-expanded="false"
-                  ><i class="mdi mdi-receipt"></i
-                  ><span class="hide-menu">Registrations </span></a
-                >
-                <ul aria-expanded="false" class="collapse first-level">
-                  <li class="sidebar-item">
-                    <a href="http://127.0.0.1:8000/Student/?" class="sidebar-link"
-                      ><i class="mdi mdi-note-outline"></i
-                      ><span class="hide-menu">
-                        Students </span></a>
-                    
-                  </li>
-                  <li class="sidebar-item">
-                    <a href="http://127.0.0.1:8000/Course/?" class="sidebar-link"
-                      ><i class="mdi mdi-note-outline"></i
-                      ><span class="hide-menu"> Courses </span></a>
-                  </li>
-                  <li class="sidebar-item">
-                    <a href="http://127.0.0.1:8000/Class/?" class="sidebar-link"
-                      ><i class="mdi mdi-note-outline"></i
-                      ><span class="hide-menu"> Classes </span></a>
-                  </li>
-                  <li class="sidebar-item">
-                    <a href="http://127.0.0.1:8000/Lecturer/?" class="sidebar-link"
-                      ><i class="mdi mdi-note-outline"></i
-                      ><span class="hide-menu"> Lecturers </span></a>
-                  </li>
-             
-                </ul>
+                  ><i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Dashboard</span></a>
               </li>
 
+             
+              <li class="sidebar-item">
+                <a
+                  class="sidebar-link has-arrow waves-effect waves-dark"
+                  href="javascript:void(0)"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-receipt"></i
+                  ><span class="hide-menu">Videos  </span></a
+                >
+                <ul aria-expanded="false" class="collapse first-level">
+                  <li class="sidebar-item">
+                    <a href="{% url 'admin_all_videos' %}" class="sidebar-link"
+                      ><i class="mdi mdi-note-outline"></i
+                      ><span class="hide-menu">
+                        View Videos </span></a>
+                  </li>
+                </ul>
+              </li>
               <li class="sidebar-item">
                 <a
                   class="sidebar-link has-arrow waves-effect waves-dark"
@@ -437,74 +297,25 @@
                 >
                 <ul aria-expanded="false" class="collapse first-level">
                   <li class="sidebar-item">
-                    <a href="http://127.0.0.1:8000/Signup" class="sidebar-link"
+                    <a href="{% url 'register' %}" class="sidebar-link"
                       ><i class="mdi mdi-all-inclusive"></i
                       ><span class="hide-menu">
-                        SignUp </span></a>
+                        Register </span></a>
                     
                   </li>
-                  <li class="sidebar-item">
-                    <a href="http://127.0.0.1:8000/password_reset" class="sidebar-link"
+                    <li class="sidebar-item">
+                    <a href="{% url 'logout' %}" class="sidebar-link"
                       ><i class="mdi mdi-all-inclusive"></i
-                      ><span class="hide-menu">Password Reset Token </span></a>
+                      ><span class="hide-menu">Logout </span></a>
                   </li>
-                
-             
+                  <li class="sidebar-item">
+                    <a href="{% url 'forget_password' %}" class="sidebar-link"
+                      ><i class="mdi mdi-all-inclusive"></i
+                      ><span class="hide-menu">Reset Password </span></a>
+                  </li>
                 </ul>
               </li>
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link has-arrow waves-effect waves-dark"
-                  href="javascript:void(0)"
-                  aria-expanded="false"
-                  ><i class="mdi mdi-receipt"></i
-                  ><span class="hide-menu">All Details </span></a
-                >
-                <ul aria-expanded="false" class="collapse first-level">
-                  <li class="sidebar-item">
-                    <a href="http://127.0.0.1:8000/StudentDetails/?" class="sidebar-link"
-                      ><i class="mdi mdi-note-outline"></i
-                      ><span class="hide-menu">
-                        Students Details </span></a>
-                    
-                  </li>
-                  <li class="sidebar-item">
-                    <a href="http://127.0.0.1:8000/CourseDetails/?" class="sidebar-link"
-                      ><i class="mdi mdi-note-outline"></i
-                      ><span class="hide-menu"> Courses Details </span></a>
-                  </li>
-                  <li class="sidebar-item">
-                    <a href="http://127.0.0.1:8000/ClassDetails/?" class="sidebar-link"
-                      ><i class="mdi mdi-note-outline"></i
-                      ><span class="hide-menu"> Classes Details </span></a>
-                  </li>
-                  <li class="sidebar-item">
-                    <a href="http://127.0.0.1:8000/LecturerDetails/?" class="sidebar-link"
-                      ><i class="mdi mdi-note-outline"></i
-                      ><span class="hide-menu"> Lecturers Details</span></a>
-                  </li>
-             
-                </ul>
-              </li>
-              
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link has-arrow waves-effect waves-dark"
-                  href="javascript:void(0)"
-                  aria-expanded="false"
-                  ><i class="mdi mdi-multiplication-box"></i
-                  ><span class="hide-menu">Gallery </span></a
-                >
-                <ul aria-expanded="false" class="collapse first-level">
-                 
-                  <li class="sidebar-item">
-                    <a href="http://127.0.0.1:8000/Gallery" class="sidebar-link"
-                      ><i class="mdi mdi-multiplication-box"></i
-                      ><span class="hide-menu"> Gallery & Photo </span></a
-                    >
-                  </li>
-            
-              
+            </ul>
           </nav>
           <!-- End Sidebar navigation -->
         </div>
@@ -518,25 +329,11 @@
       <!-- ============================================================== -->
       {% block contents %}
       <div class="page-wrapper">
-        <!-- ============================================================== -->
-        <!-- Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
         <div class="page-breadcrumb">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-              <h3 class="page-title">Dashboard</h3>
-              <h4> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;  {{current_date}} </h4> 
+              
               <div class="ml-auto text-right">
-                <nav aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    {% if user.is_authenticated %}
-                    <h3 class="breadcrumb-item">Hi, {{user.username}}</h3>
-                    {% endif %}
-                  
-                    
-                    
-                  </ol>
-                </nav>
               </div>
             </div>
           </div>
@@ -549,82 +346,7 @@
         <!-- ============================================================== -->
         <div class="container-fluid">
           <!-- ============================================================== -->
-          <!-- Sales Cards  -->
-          <!-- ============================================================== -->
-          <div class="row">
-            <!-- Column -->
-            <div class="col-md-7 col-lg-8 col-xlg-5">
-              <div class="card card-hover">
-                <div class="box bg-cyan text-center">
-                  <h1 class="font-light text-white">
-                    <i class="mdi mdi-view-dashboard"></i>
-                  </h1>
-                  <h3 class="text-white">Dashboard</h3>
-                 
-                  <h2>Welcome to Rift School Management System</h2>
-                  <h3>Purity Graceland International School, Tarkwa</h3>
-                </div>  
-              </div>
-            </div>
-            <!-- Column -->
-  
-            <div class="col-md-6 col-lg-4 col-xlg-3">
-              <div class="card card-hover">
-                <div class="box bg-success text-center">
-                  <h1 class="font-light text-white">
-                    <i class="mdi mdi-chart-areaspline"></i>
-                  </h1>
-                  <h3 class="text-white"> STUDENTS</h3>
-                  <h1>{{student_count}}</h1>
- </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-4 col-xlg-3">
-              <div class="card card-hover">
-                <div class="box bg-info text-center">
-                  <h1 class="font-light text-white">
-                    <i class="mdi mdi-chart-areaspline"></i>
-                  </h1>
-                  <h3 class="text-white"> COURSES</h3>
-
-                  <h1>{{course_count}}</h1>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-4 col-xlg-3">
-              <div class="card card-hover">
-                <div class="box bg-danger text-center">
-                  <h1 class="font-light text-white">
-                    <i class="mdi mdi-chart-areaspline"></i>
-                  </h1>
-                  <h3 class="text-white"> LECTURERS</h3>
-                  <h1>{{lecturer_count}}</h1>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-4 col-xlg-3">
-              <div class="card card-hover">
-                <div class="box bg-secondary text-center">
-                  <h1 class="font-light text-white">
-                    <i class="mdi mdi-chart-areaspline"></i>
-                  </h1>
-                  <h3 class="text-white"> CLASSES</h3>
-                   <h1>{{class1_count}}</h1>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-4 col-xlg-3">
-              <div class="card card-hover">
-                <div class="box bg-success text-center">
-                  <h1 class="font-light text-white">
-                    <i class="mdi mdi-chart-areaspline"></i>
-                  </h1>
-                  <h3 class="text-white"> FINANCES</h3>
-                  <h1>{{fee_count}}</h1>
-                </div>
-              </div>
-            </div>
-            <!-- Column -->
+        
 
           <!-- ============================================================== -->
           <!-- Recent comment and chats -->

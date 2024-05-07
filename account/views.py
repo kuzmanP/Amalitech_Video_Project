@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 #from .models import User
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -7,10 +7,10 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
-from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.forms import PasswordResetForm, SetPasswordForm
 from django.template.loader import render_to_string
 from django.db.models.query_utils import Q
-from django.utils.http import urlsafe_base64_encode
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 
@@ -113,5 +113,31 @@ def forgetPassword(request):
     password_reset_form = PasswordResetForm()
     return render(request,'password/password_reset.html',{"password_reset_form":password_reset_form})
 
+
 def password_reset_confirm(request, uidb64, token):
-    return render(request, 'password/password_reset_confirm.html')
+    if request.method == 'POST':
+        set_password_form = SetPasswordForm(request.user, request.POST)
+        if set_password_form.is_valid():
+            try:
+                uid = urlsafe_base64_decode(uidb64).decode()
+                user = User.objects.get(pk=uid)
+            except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+                user = None
+
+
+            if user is not None:
+                set_password_form.save()
+                update_session_auth_hash(request, user)
+                messages.success(request, 'Your password has been successfully reset.')
+                return redirect('password_reset_complete')
+            else:
+                messages.error(request, 'The password reset link is invalid.')
+                return redirect('forget_password')
+    else:
+        set_password_form = SetPasswordForm(request.user)
+
+    return render(request, 'password/password_reset_confirm.html', {"set_password_form": set_password_form})
+
+
+def password_reset_complete(request):
+    return render(request, 'password/password_reset_complete.html')

@@ -32,9 +32,9 @@ def index(request):
         if user is not None:
             login(request, user)
             if user.is_superuser:
-                return redirect('/')
+                return redirect('landing_index')
             else:
-                return redirect('/userDashboard')
+                return redirect('user_dashboard')
         else:
             messages.error(request, 'Invalid Credentials')
             return redirect('index')

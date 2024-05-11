@@ -56,4 +56,4 @@ def usersProfile(request):
 
 
 def usersDashboard(request):
-    return render(request, 'matrix-admin/index.html')
+    return render(request, 'matrix-admin/index2.html')

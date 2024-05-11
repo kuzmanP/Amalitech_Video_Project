@@ -1,0 +1,13 @@
+{% extends 'matrix-admin/index2.html' %}
+{% load crispy_forms_filters %}
+{% block contents %}
+<div class="container p-5 px-5">
+    <h2 class="font-weight-bold mt-3">Set Up Profile</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+</div>
+
+{% endblock contents %}

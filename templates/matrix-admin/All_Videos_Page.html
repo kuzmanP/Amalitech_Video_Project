@@ -1,9 +1,30 @@
 {% extends 'matrix-admin/index2.html' %}
 {% block contents %}
-<!--Password reset sent-->
 <div class="container p-5 px-5">
     <h2 class="font-weight-bold mt-3">Video Page</h2>
-    
-</div>
+    <h1>{{ video.title }}</h1>
+    <div style="width: 100%; max-width: 800px;"> <!-- Adjust frame size as needed -->
+        <video controls style="width: 100%;">
+            <source src="{{ video.file.url }}" type="{{ video.file.content_type }}">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <p>{{ video.description }}</p>
+    <p>Share Video using the link: {{ video.video_link }}</p>
 
+  {% if previous_video %}
+    <form action="{% url 'next_video' previous_video.pk %}" method="get">
+        <button type="submit">Previous</button>
+    </form>
+{% endif %}
+
+{% if next_video %}
+    <form action="{% url 'next_video' next_video.pk %}" method="get">
+        <button type="submit">Next</button>
+    </form>
+{% else %}
+    <p>No more videos</p>
+{% endif %}
+
+</div>
 {% endblock contents %}

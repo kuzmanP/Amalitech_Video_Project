@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'VideoApp.apps',
+    'VideoApp',
     'crispy_forms',
     'account',
 ]
@@ -146,3 +146,9 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Define the media root directory
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Define the base URL for serving media files
+MEDIA_URL = '/media/'

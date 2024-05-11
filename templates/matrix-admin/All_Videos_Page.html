@@ -10,7 +10,7 @@
         </video>
     </div>
     <p>{{ video.description }}</p>
-    <p>Share Video using the link: {{ video.video_link }}</p>
+    <p>Share Video using the link: <a href="{% url 'admin_all_videos'  %}{{ video.id }}">Get Link</a></p>
 
   {% if previous_video %}
     <form action="{% url 'next_video' previous_video.pk %}" method="get">

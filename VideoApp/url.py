@@ -3,7 +3,6 @@ from django.urls import path
 from .import views
 
 from .views import index,usersDashboard,display_video,UploadVideo,usersProfile
-
 urlpatterns=[
     path('', views.index, name='landing_index'),
     path('userDashboard', views.usersDashboard, name='user_dashboard'),

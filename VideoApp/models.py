@@ -2,6 +2,9 @@ import uuid
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
+
+
 # Create your models here.
 
 #userProfile Model
@@ -28,6 +31,9 @@ class Video(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.description}"
+
+    # def get_shareable_link(self):
+    #     return reverse('video_detail', kwargs={'pk': self.pk})
 
 
 

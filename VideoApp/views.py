@@ -6,10 +6,12 @@ from .models import Video
 
 
 # Create your views here.
+@login_required(login_url='index')
 def index(request):
     return render(request, 'matrix-admin/index2.html')
 
 
+@login_required(login_url='index')
 def display_video(request, video_id=None):
     if video_id:
         try:
@@ -29,7 +31,7 @@ def display_video(request, video_id=None):
                   {'video': current_video, 'next_video': next_video, 'previous_video': previous_video})
 
 
-@login_required
+@login_required(login_url='index')
 def UploadVideo(request):
     if request.method == 'POST':
         form = VideoForm(request.POST, request.FILES)
@@ -42,7 +44,7 @@ def UploadVideo(request):
         form = VideoForm()
     return render(request, 'matrix-admin/Upload_Video.html', {'form': form})
 
-
+@login_required(login_url='index')
 def usersProfile(request):
     if request.method == 'POST':
         form = UserProfileForm(request.POST)
@@ -54,6 +56,6 @@ def usersProfile(request):
         form = UserProfileForm()
     return render(request, 'userProfile.html', {'form': form})
 
-
+@login_required(login_url='index')
 def usersDashboard(request):
     return render(request, 'matrix-admin/index2.html')

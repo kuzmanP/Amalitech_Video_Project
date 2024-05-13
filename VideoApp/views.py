@@ -31,6 +31,10 @@ def display_video(request, video_id=None):
                   {'video': current_video, 'next_video': next_video, 'previous_video': previous_video})
 
 
+
+
+
+
 @login_required(login_url='index')
 def UploadVideo(request):
     if request.method == 'POST':
@@ -43,6 +47,18 @@ def UploadVideo(request):
     else:
         form = VideoForm()
     return render(request, 'matrix-admin/Upload_Video.html', {'form': form})
+
+@login_required(login_url='index')
+def UpdateVideo(request, video_id):
+    video = get_object_or_404(Video, id=video_id)
+    if request.method == 'POST':
+        form = VideoForm(request.POST, request.FILES, instance=video)
+        if form.is_valid():
+            video = form.save()
+            return redirect('admin_all_videos')
+    else:
+        form = VideoForm(instance=video)
+    return render(request, 'matrix-admin/updateVideo.html', {'form': form, 'video': video})
 
 @login_required(login_url='index')
 def usersProfile(request):
@@ -59,3 +75,7 @@ def usersProfile(request):
 @login_required(login_url='index')
 def usersDashboard(request):
     return render(request, 'matrix-admin/index2.html')
+
+@login_required(login_url='index')
+def DataTable(request):
+    return render(request, 'matrix-admin/tables.html')

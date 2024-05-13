@@ -78,4 +78,5 @@ def usersDashboard(request):
 
 @login_required(login_url='index')
 def DataTable(request):
-    return render(request, 'matrix-admin/tables.html')
+    video = Video.objects.all()
+    return render(request, 'matrix-admin/tables.html', {'video': video})

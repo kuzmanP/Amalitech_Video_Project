@@ -60,6 +60,18 @@ def UpdateVideo(request, video_id):
         form = VideoForm(instance=video)
     return render(request, 'matrix-admin/updateVideo.html', {'form': form, 'video': video})
 
+
+@login_required(login_url='index')
+def DeleteVideo(request, video_id):
+    video = get_object_or_404(Video, id=video_id)
+    if request.method == 'POST':
+        video.delete()
+        return redirect('admin_all_videos')
+    return render(request, 'matrix-admin/All_Videos_Page.html', {'video': video})
+
+
+
+
 @login_required(login_url='index')
 def usersProfile(request):
     if request.method == 'POST':

@@ -2,7 +2,7 @@ from django.urls import path
 
 from .import views
 
-from .views import index,usersDashboard,display_video,UploadVideo,usersProfile,UpdateVideo,DataTable
+from .views import index,usersDashboard,display_video,UploadVideo,usersProfile,UpdateVideo,DataTable,DeleteVideo
 urlpatterns=[
     path('', views.index, name='landing_index'),
     path('userDashboard', views.usersDashboard, name='user_dashboard'),
@@ -12,4 +12,5 @@ urlpatterns=[
     path('admin/all_videos/<uuid:video_id>', views.display_video, name='next_video'),
     path('admin/upload_video', views.UploadVideo, name='admin_upload_video'),
     path('admin/update_video/<uuid:video_id>', views.UpdateVideo, name='admin_update_video'),
+    path('admin/delete_video/<uuid:video_id>', views.UpdateVideo, name='admin_delete_video'),
 ]

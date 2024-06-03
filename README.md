@@ -1,4 +1,4 @@
-Video Platform
+##Video Platform
 Project Objective
 Paul Leonard, a video creator, seeks a bespoke video hosting platform dedicated to his brand. This custom platform aims to address branding issues associated with existing video hosting services. The platform will allow Paul to upload and manage videos exclusively for his customers.
 

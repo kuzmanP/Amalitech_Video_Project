@@ -119,13 +119,15 @@ def password_reset_confirm(request, uidb64, token):
         set_password_form = SetPasswordForm(request.user, request.POST)
         if set_password_form.is_valid():
             try:
-                uid = urlsafe_base64_decode(uidb64).decode()
+                uid = int(urlsafe_base64_decode(uidb64).decode())
                 user = User.objects.get(pk=uid)
             except (TypeError, ValueError, OverflowError, User.DoesNotExist):
                 user = None
 
 
             if user is not None:
+                set_password_form = SetPasswordForm(user, request.POST)
+                set_password_form.is_valid()
                 set_password_form.save()
                 update_session_auth_hash(request, user)
                 messages.success(request, 'Your password has been successfully reset.')

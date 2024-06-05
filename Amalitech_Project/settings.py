@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-soo=+gjqx9mv1b+-mi7-6o7jl^@by-yy%%z+*a$9e^ok88+@mf
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'rift-video-project.onrender.com']
 
 #Email Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

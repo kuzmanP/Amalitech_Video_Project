@@ -98,7 +98,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 if not DEBUG:
     DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+        'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
     }
 else:
     # Database

@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #SECRET_KEY = 'django-insecure-soo=+gjqx9mv1b+-mi7-6o7jl^@by-yy%%z+*a$9e^ok88+@mf'
 SECRET_KEY = os.environ.get('SECRET_KEY','django-insecure-soo=+gjqx9mv1b+-mi7-6o7jl^@by-yy%%z+*a$9e^ok88+@mf')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True') == "True"
+DEBUG = os.environ.get('DEBUG', 'False') == "True"
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'rift-video-project.onrender.com']
 
@@ -98,7 +98,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 if not DEBUG:
     DATABASES = {
-        'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+        "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
     }
 else:
     # Database

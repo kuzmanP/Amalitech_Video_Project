@@ -64,10 +64,8 @@ def UpdateVideo(request, video_id):
 @login_required(login_url='index')
 def DeleteVideo(request, video_id):
     video = get_object_or_404(Video, id=video_id)
-    if request.method == 'POST':
-        video.delete()
-        return redirect('admin_all_videos')
-    return render(request, 'matrix-admin/All_Videos_Page.html', {'video': video})
+    video.delete()
+    return redirect('admin_all_videos')
 
 
 

@@ -12,5 +12,5 @@ urlpatterns=[
     path('admin/all_videos/<uuid:video_id>', views.display_video, name='next_video'),
     path('admin/upload_video', views.UploadVideo, name='admin_upload_video'),
     path('admin/update_video/<uuid:video_id>', views.UpdateVideo, name='admin_update_video'),
-    path('admin/delete_video/<uuid:video_id>', views.UpdateVideo, name='admin_delete_video'),
+    path('admin/delete_video/<uuid:video_id>', views.DeleteVideo, name='admin_delete_video'),
 ]

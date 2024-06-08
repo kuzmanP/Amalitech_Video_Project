@@ -1,6 +1,11 @@
-from django.http import HttpResponse
+import  datetime
+import time
+import timeit
+
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+
 from .forms import VideoForm, UserProfileForm
 from .models import Video
 
@@ -8,7 +13,22 @@ from .models import Video
 # Create your views here.
 @login_required(login_url='index')
 def index(request):
-    return render(request, 'matrix-admin/index2.html')
+    video_count = Video.objects.count()
+    user_count = User.objects.count()
+    timer = time.asctime().upper()
+    if request.user.is_authenticated:
+        last_login = request.user.last_login
+        date_joined = request.user.date_joined
+    else:
+        last_login = None
+        date_joined = None
+    return render(request, 'matrix-admin/index2.html',
+                  {'video_count': video_count,
+                   'user_count': user_count,
+                   'timer': timer,
+                   'last_login':last_login,
+                   'date_joined':date_joined
+                   })
 
 
 @login_required(login_url='index')
@@ -31,10 +51,6 @@ def display_video(request, video_id=None):
                   {'video': current_video, 'next_video': next_video, 'previous_video': previous_video})
 
 
-
-
-
-
 @login_required(login_url='index')
 def UploadVideo(request):
     if request.method == 'POST':
@@ -47,6 +63,7 @@ def UploadVideo(request):
     else:
         form = VideoForm()
     return render(request, 'matrix-admin/Upload_Video.html', {'form': form})
+
 
 @login_required(login_url='index')
 def UpdateVideo(request, video_id):
@@ -68,8 +85,6 @@ def DeleteVideo(request, video_id):
     return redirect('admin_all_videos')
 
 
-
-
 @login_required(login_url='index')
 def usersProfile(request):
     if request.method == 'POST':
@@ -82,9 +97,11 @@ def usersProfile(request):
         form = UserProfileForm()
     return render(request, 'userProfile.html', {'form': form})
 
+
 @login_required(login_url='index')
 def usersDashboard(request):
     return render(request, 'matrix-admin/index2.html')
+
 
 @login_required(login_url='index')
 def DataTable(request):

@@ -1,0 +1,24 @@
+{% extends 'matrix-admin/index2.html' %}
+{% load crispy_forms_filters %}
+{% block contents %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-secondary text-white">
+                    <h2 class="font-weight-bold mb-0">Update Video</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ form|crispy }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Video</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock contents %}

@@ -5,7 +5,7 @@ import timeit
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-
+from  django.contrib import messages
 from .forms import VideoForm, UserProfileForm
 from .models import Video
 
@@ -44,8 +44,12 @@ def display_video(request, video_id=None):
             previous_video = None
     else:
         current_video = Video.objects.first()
-        next_video = Video.objects.exclude(id=current_video.id).order_by('id').first()
-        previous_video = Video.objects.filter(id__lt=current_video.id).order_by('-id').first()
+        if current_video:
+            next_video = Video.objects.exclude(id=current_video.id).order_by('id').first()
+            previous_video = Video.objects.filter(id__lt=current_video.id).order_by('-id').first()
+        else:
+            messages.error(request,'No Videos Found',fail_silently=True)
+            return render(request, 'matrix-admin/All_Videos_Page.html')
 
     return render(request, 'matrix-admin/All_Videos_Page.html',
                   {'video': current_video, 'next_video': next_video, 'previous_video': previous_video})

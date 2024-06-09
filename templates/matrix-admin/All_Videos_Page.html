@@ -2,6 +2,9 @@
 {% block contents %}
 <div class="container p-5 px-5">
     <h2 class="font-weight-bold mt-3">Video Page</h2>
+    {% for message in messages %}
+        <h2 class="mdi-message-alert error">{{ message }}</h2>
+    {% endfor %}
     <h1>{{ video.title }}</h1>
     <div style="width: 100%; max-width: 800px;"> <!-- Adjust frame size as needed -->
         <video controls style="width: 100%;">

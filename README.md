@@ -29,3 +29,24 @@ Paul Leonard, a video creator, seeks a bespoke video hosting platform dedicated 
 - **Video Controls**: Common video control buttons for play, pause, etc.
 - **Branding**: A prominently displayed business logo at the top.
 - **Share Button**: Allows users to share the link to the current video page.
+
+  # Dashboard Access Instructions
+
+To access the dashboard, use the following link:
+
+[Dashboard Link](https://rift-video-project.onrender.com/video)
+
+## Login Credentials
+
+### Admin
+- **Email:** kuz@gmail.com
+- **Password:** Qwerty123!
+
+### User
+- **Email:** ce-gghartey3620@st.umat.edu.gh
+- **Password:** Qwerty!123
+
+Please keep these credentials confidential and do not share them with unauthorized individuals.
+
+
+

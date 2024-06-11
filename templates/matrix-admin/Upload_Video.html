@@ -7,6 +7,9 @@
             <div class="card">
                 <div class="card-header bg-secondary text-white">
                     <h2 class="font-weight-bold mb-0">Upload Video</h2>
+                    {% for message in messages%}
+                       <h3> {{ message }}</h3>
+                    {% endfor %}
                 </div>
                 <div class="card-body">
                     <form method="post" enctype="multipart/form-data">

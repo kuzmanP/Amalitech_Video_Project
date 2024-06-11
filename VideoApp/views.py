@@ -64,6 +64,8 @@ def UploadVideo(request):
             video.uploaded_by = request.user.userprofile
             video.save()
             return redirect('landing_index')
+        else:
+            messages.error(request,'File is not a Video',fail_silently=True)
     else:
         form = VideoForm()
     return render(request, 'matrix-admin/Upload_Video.html', {'form': form})

@@ -6,13 +6,15 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header bg-secondary text-white">
-                    <h2 class="font-weight-bold mb-0">Update Video</h2>
+                    <h2 class="font-weight-bold mb-0">Update Video HHHHHH</h2>
                 </div>
                 <div class="card-body">
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="form-group">
                             {{ form|crispy }}
+                            <label for="id_file">Upload Video</label>
+                            <input type="file" id="id_file" name="file" accept="video/*" class="form-control">
                         </div>
                         <button type="submit" class="btn btn-primary">Update Video</button>
                     </form>

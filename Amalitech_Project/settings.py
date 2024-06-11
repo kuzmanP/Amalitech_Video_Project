@@ -37,7 +37,14 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
+# Set session to expire after 1 hour of inactivity
+SESSION_COOKIE_AGE = 3600  # 1 hour in seconds
 
+# Update the session expiry time on every request
+SESSION_SAVE_EVERY_REQUEST = True
+
+# Optionally, ensure sessions are persisted even if the browser is closed
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
 AUTHENTICATION_BACKENDS = [
     'account.auth_backend.EmailAuthBackend',
